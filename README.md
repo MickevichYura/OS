@@ -7,6 +7,6 @@
 
 + [lab 4 - The Dining Philosophers](https://github.com/MickevichYura/OS/tree/master/lab4)
 
-+ lab 5 - Scheduling 
++ [lab 5 - Scheduling] ()
 
-+ lab 6 - Memory Management
++ [lab 6 - Memory Management] ()
