@@ -8,5 +8,7 @@
 + [lab 4 - The Dining Philosophers](https://github.com/MickevichYura/OS/tree/master/lab4)
 
 + [lab 5 - Scheduling](https://github.com/MickevichYura/OS/tree/master/lab5)
+  1. Priority Scheduling
+  2. Guaranteed Scheduling
 
 + [lab 6 - Memory Management](https://github.com/MickevichYura/OS/tree/master/lab6)
