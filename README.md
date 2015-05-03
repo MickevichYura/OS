@@ -12,3 +12,4 @@
   2. Guaranteed Scheduling
 
 + [lab 6 - Memory Management](https://github.com/MickevichYura/OS/tree/master/lab6)
+  1. Swapping
