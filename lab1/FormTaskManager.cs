@@ -53,7 +53,7 @@ namespace lab1
             button1.PerformClick();
         }
 
-        public string GetProcessOwner(int processId)
+        private static string GetProcessOwner(int processId)
         {
             string query = "Select * From Win32_Process Where ProcessID = " + processId;
 
@@ -61,7 +61,7 @@ namespace lab1
             using (ManagementObjectCollection processList = searcher.Get())
             foreach (ManagementObject obj in processList)
             {
-                string[] argList = new string[] { string.Empty, string.Empty };
+                string[] argList = { string.Empty, string.Empty };
                 int returnVal = Convert.ToInt32(obj.InvokeMethod("GetOwner", argList));
                 if (returnVal == 0)
                 {
