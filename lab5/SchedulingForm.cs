@@ -11,32 +11,31 @@ namespace lab5
         public SchedulingForm()
         {
             InitializeComponent();
-            cbAmountOfProcesses1.DataSource = cbAmountOfProcesses2.DataSource = new[] { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            cbAmountOfProcesses1.DataSource = new[] { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            cbAmountOfProcesses2.DataSource = new[] { 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             cbPriotities.DataSource = new[] { 3, 4, 5, 6, 7, 8, 9, 10 };
-            cbQuantum1.DataSource = cbQuantum2.DataSource = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            cbQuantum1.DataSource = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            cbQuantum2.DataSource = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         }
 
 
-        private int sumTime, quantumPerProcess, promiseTime, leftTime;
+        private readonly List<double> _times = new List<double>();
 
+        private int _amount1, _amount2;
+        private int _quantum1;
+        private int _quantum2;
+        private readonly Dictionary<string, int> _copy1 = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> _copy2 = new Dictionary<string, int>();
+        private static readonly Random GetRandom = new Random(DateTime.Now.Millisecond);
+        private static readonly object SyncLock = new object();
 
-        private int Amount, counters;
-        private int Priorities;
-        private int QStep;
-        private int Qstep2;
-        private Dictionary<string, int> Copy1 = new Dictionary<string, int>();
-        private Dictionary<string, int> Copy2 = new Dictionary<string, int>();
-        private static readonly Random getRandom = new Random(DateTime.Now.Millisecond);
-        private static readonly object syncLock = new object();
-
-        public static int GetRandomNumber(int min, int max)
+        private static int GetRandomNumber(int min, int max)
         {
-            lock (syncLock)
+            lock (SyncLock)
             {
-                // synchronize
                 try
                 {
-                    return getRandom.Next(min, max);
+                    return GetRandom.Next(min, max);
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -47,15 +46,10 @@ namespace lab5
 
         private void buttonLoad1_Click(object sender, EventArgs e)
         {
-            Amount = int.Parse(cbAmountOfProcesses1.Text);
-            Priorities = int.Parse(cbPriotities.Text);
-            QStep = int.Parse(cbQuantum1.Text);
+            _amount1 = 0;
+            _quantum1 = int.Parse(cbQuantum1.Text);
             dataGridView1.Rows.Clear();
-            for (int i = 0; i < Amount; i++)
-            {
-                var a = GetRandomNumber(0, Priorities);
-                dataGridView1.Rows.Add("Task " + i, GetRandomNumber(QStep, QStep * 30).ToString(), a, a);
-            }
+            AddProcesses1(int.Parse(cbAmountOfProcesses1.Text), int.Parse(cbPriotities.Text));
             buttonStart1.Enabled = true;
             buttonStop1.Enabled = true;
         }
@@ -63,10 +57,10 @@ namespace lab5
         private void buttonStart1_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns[2].ReadOnly = true;
-            Copy1.Clear();
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            _copy1.Clear();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                Copy1.Add(dataGridView1.Rows[i].Cells[0].Value.ToString(),
+                _copy1.Add(dataGridView1.Rows[i].Cells[0].Value.ToString(),
                     int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString()));
 
                 dataGridView1.Rows[i].Cells[2].Value = int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString());
@@ -74,6 +68,22 @@ namespace lab5
             }
             timer1.Enabled = true;
             dataGridView1.Sort(Priority, ListSortDirection.Descending);
+        }
+
+
+        private void buttonAdd1_Click(object sender, EventArgs e)
+        {
+            AddProcesses1(int.Parse(cbAmountOfProcesses1.Text), int.Parse(cbPriotities.Text));
+        }
+
+        private void AddProcesses1(int amount, int priorities)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                var a = GetRandomNumber(0, priorities);
+                dataGridView1.Rows.Add("Task " + (i + _amount1), GetRandomNumber(_quantum1, _quantum1 * 30).ToString(), a, a);
+            }
+            _amount1 += amount;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -92,14 +102,14 @@ namespace lab5
             }
             try
             {
-                progressBar1.Value = Copy1[dataGridView1.Rows[0].Cells[0].Value.ToString()] -
+                progressBar1.Value = _copy1[dataGridView1.Rows[0].Cells[0].Value.ToString()] -
                                      int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString());
             }
             catch (ArgumentOutOfRangeException)
             {
             }
 
-            dataGridView1.Rows[0].Cells[1].Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) - QStep;
+            dataGridView1.Rows[0].Cells[1].Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) - _quantum1;
             if (int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString()) > 0)
                 dataGridView1.Rows[0].Cells[2].Value = int.Parse(dataGridView1.Rows[0].Cells[2].Value.ToString()) - 1;
             dataGridView1.Rows[0].Cells[3].Value = int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString()) - 1;
@@ -112,17 +122,17 @@ namespace lab5
 
         private void Check()
         {
-            if (int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) <= 0 && Amount > 0)
+            if (int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) <= 0 && _amount1 > 0)
             {
                 dataGridView1.Rows.RemoveAt(0);
-                Amount--;
+                _amount1--;
                 //progressBar1.Value = 0;
             }
-            if (Amount == 0)
+            if (_amount1 == 0)
             {
                 timer1.Enabled = false;
                 progressBar1.Value = 0;
-                label1.Text = "0";
+                label1.Text = @"0";
                 MessageBox.Show(@"Success");
                 dataGridView1.Columns[2].ReadOnly = false;
                 buttonStart1.Enabled = false;
@@ -138,10 +148,10 @@ namespace lab5
 
         private void buttonStart2_Click(object sender, EventArgs e)
         {
-            Copy2.Clear();
-            for (int i = 0; i < dataGridView2.Rows.Count - 1; i++)
+            _copy2.Clear();
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
             {
-                Copy2.Add(dataGridView2.Rows[i].Cells[0].Value.ToString(),
+                _copy2.Add(dataGridView2.Rows[i].Cells[0].Value.ToString(),
                     int.Parse(dataGridView2.Rows[i].Cells[1].Value.ToString()));
             }
             timer2.Enabled = true;
@@ -149,21 +159,29 @@ namespace lab5
 
         private void buttonLoad2_Click(object sender, EventArgs e)
         {
-            leftTime = 0;
-            sumTime = 0;
-            counters = int.Parse(cbAmountOfProcesses2.Text);
-            Qstep2 = int.Parse(cbQuantum2.Text);
+            _amount2 = 0;
+            _quantum2 = int.Parse(cbQuantum2.Text);
             dataGridView2.Rows.Clear();
 
-            for (int i = 0; i < counters; i++)
-            {
-                int processTime = GetRandomNumber(Qstep2, Qstep2 * 30);
-                dataGridView2.Rows.Add("Task " + i, processTime.ToString(), 0, 0);
-                sumTime += processTime;
-            }
+            AddProcesses2(int.Parse(cbAmountOfProcesses2.Text));
 
             buttonStart2.Enabled = true;
             buttonStop2.Enabled = true;
+        }
+
+        private void buttonAdd2_Click(object sender, EventArgs e)
+        {
+            AddProcesses2(int.Parse(cbAmountOfProcesses2.Text));
+        }
+
+        private void AddProcesses2(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                int processTime = GetRandomNumber(_quantum2, _quantum2 * 30);
+                dataGridView2.Rows.Add("Task " + (i + _amount2), processTime.ToString(), 0, 0, processTime.ToString());
+            }
+            _amount2 += amount;
         }
 
         private void buttonStop2_Click(object sender, EventArgs e)
@@ -173,6 +191,7 @@ namespace lab5
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            _times.Clear();
             timer2.Enabled = false;
 
             Thread.Sleep(100);
@@ -187,39 +206,70 @@ namespace lab5
             }
             try
             {
-                progressBar2.Value = Copy2[dataGridView2.Rows[0].Cells[0].Value.ToString()] -
+                progressBar2.Value = _copy2[dataGridView2.Rows[0].Cells[0].Value.ToString()] -
                                      int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString());
             }
             catch (ArgumentOutOfRangeException)
             {
             }
 
-            dataGridView2.Rows[0].Cells[1].Value = int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString()) - Qstep2;
-            dataGridView2.Rows[0].Cells[2].Value = int.Parse(dataGridView2.Rows[0].Cells[2].Value.ToString()) + Qstep2;
-            leftTime += Qstep2;
+            dataGridView2.Rows[0].Cells[1].Value = int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString()) - _quantum2;
 
             dataGridView2.Rows[0].Cells[3].Value =
                 (double.Parse(dataGridView2.Rows[0].Cells[3].Value.ToString()));
+
             label3.Text = progressBar1.Value.ToString();
             label4.Text = dataGridView2.Rows[0].Cells[0].Value.ToString();
             timer2.Enabled = true;
             Check2();
-            dataGridView2.Sort(LeftTimeColumn, ListSortDirection.Descending);
+
+            double minValue = Double.MaxValue;
+            int minValueIndex = 0;
+            for (int i = 0; i < dataGridView2.RowCount; i++)
+            {
+                int processWorkingTime = int.Parse(dataGridView2.Rows[i].Cells["ColumnFullTime"].Value.ToString()) -
+                                          int.Parse(dataGridView2.Rows[i].Cells[1].Value.ToString());
+
+                dataGridView2.Rows[i].Cells[2].Value = (int)(dataGridView2.Rows[i].Cells[2].Value) +
+                                                       _quantum2;
+                double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["LeftTimeColumn"].Value.ToString());
+                //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["ColumnFullTime"].Value.ToString());
+                dataGridView2.Rows[i].Cells[3].Value = d;
+
+                _times.Add(double.Parse(dataGridView2.Rows[i].Cells[3].Value.ToString()));
+                if (minValue > _times[i])
+                {
+                    minValue = _times[i];
+                    minValueIndex = i;
+                }
+            }
+
+            if (dataGridView2.RowCount != 0)
+            {
+                for (int i = 0; i < dataGridView2.ColumnCount; i++)
+                {
+                    object swap0 = dataGridView2.Rows[0].Cells[i].Value;
+                    object swap1 = dataGridView2.Rows[minValueIndex].Cells[i].Value;
+                    dataGridView2.Rows[0].Cells[i].Value = swap1;
+                    dataGridView2.Rows[minValueIndex].Cells[i].Value = swap0;
+                }
+            }
+
         }
 
         private void Check2()
         {
-            if (int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString()) <= 0 && counters > 0)
+            if (int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString()) <= 0 && _amount2 > 0)
             {
                 dataGridView2.Rows.RemoveAt(0);
-                counters--;
+                _amount2--;
                 progressBar2.Value = 0;
             }
-            if (counters == 0)
+            if (_amount2 == 0)
             {
-                timer1.Enabled = false;
+                timer2.Enabled = false;
                 progressBar2.Value = 0;
-                label3.Text = "0";
+                label3.Text = @"0";
                 MessageBox.Show(@"Success");
                 dataGridView2.Columns[2].ReadOnly = false;
                 buttonStart2.Enabled = false;
