@@ -33,11 +33,11 @@
             this.Philosopher3 = new System.Windows.Forms.Label();
             this.Philosopher4 = new System.Windows.Forms.Label();
             this.Philosopher5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelCount1 = new System.Windows.Forms.Label();
+            this.labelCount2 = new System.Windows.Forms.Label();
+            this.labelCount3 = new System.Windows.Forms.Label();
+            this.labelCount4 = new System.Windows.Forms.Label();
+            this.labelCount5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -53,8 +53,8 @@
             this.borderedPictureBoxPlate5 = new lab4.BorderedPictureBox();
             this.borderedPictureBoxPlate4 = new lab4.BorderedPictureBox();
             this.borderedPictureBoxPlate3 = new lab4.BorderedPictureBox();
-            this.borderedPictureBoxPlate2 = new lab4.BorderedPictureBox();
             this.borderedPictureBoxPlate1 = new lab4.BorderedPictureBox();
+            this.borderedPictureBoxPlate2 = new lab4.BorderedPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoFood1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxThinking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxEating)).BeginInit();
@@ -67,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate2)).BeginInit();
             this.SuspendLayout();
             // 
             // Philosopher1
@@ -83,7 +83,7 @@
             // Philosopher2
             // 
             this.Philosopher2.AutoSize = true;
-            this.Philosopher2.Location = new System.Drawing.Point(391, 148);
+            this.Philosopher2.Location = new System.Drawing.Point(380, 149);
             this.Philosopher2.Name = "Philosopher2";
             this.Philosopher2.Size = new System.Drawing.Size(71, 13);
             this.Philosopher2.TabIndex = 11;
@@ -110,61 +110,66 @@
             // Philosopher5
             // 
             this.Philosopher5.AutoSize = true;
-            this.Philosopher5.Location = new System.Drawing.Point(25, 149);
+            this.Philosopher5.Location = new System.Drawing.Point(36, 149);
             this.Philosopher5.Name = "Philosopher5";
             this.Philosopher5.Size = new System.Drawing.Size(71, 13);
             this.Philosopher5.TabIndex = 14;
             this.Philosopher5.Text = "Philosopher 5";
             // 
-            // label6
+            // labelCount1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(255, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 22);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "0";
+            this.labelCount1.AutoSize = true;
+            this.labelCount1.BackColor = System.Drawing.Color.Transparent;
+            this.labelCount1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount1.Location = new System.Drawing.Point(237, 59);
+            this.labelCount1.Name = "labelCount1";
+            this.labelCount1.Size = new System.Drawing.Size(32, 36);
+            this.labelCount1.TabIndex = 25;
+            this.labelCount1.Text = "0";
             // 
-            // label7
+            // labelCount2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(444, 258);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 22);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "0";
+            this.labelCount2.AutoSize = true;
+            this.labelCount2.BackColor = System.Drawing.Color.Transparent;
+            this.labelCount2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount2.Location = new System.Drawing.Point(419, 191);
+            this.labelCount2.Name = "labelCount2";
+            this.labelCount2.Size = new System.Drawing.Size(32, 36);
+            this.labelCount2.TabIndex = 26;
+            this.labelCount2.Text = "0";
             // 
-            // label8
+            // labelCount3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(349, 454);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 22);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "0";
+            this.labelCount3.AutoSize = true;
+            this.labelCount3.BackColor = System.Drawing.Color.Transparent;
+            this.labelCount3.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount3.Location = new System.Drawing.Point(331, 387);
+            this.labelCount3.Name = "labelCount3";
+            this.labelCount3.Size = new System.Drawing.Size(32, 36);
+            this.labelCount3.TabIndex = 27;
+            this.labelCount3.Text = "0";
             // 
-            // label9
+            // labelCount4
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(165, 454);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(20, 22);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "0";
+            this.labelCount4.AutoSize = true;
+            this.labelCount4.BackColor = System.Drawing.Color.Transparent;
+            this.labelCount4.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount4.Location = new System.Drawing.Point(147, 387);
+            this.labelCount4.Name = "labelCount4";
+            this.labelCount4.Size = new System.Drawing.Size(32, 36);
+            this.labelCount4.TabIndex = 28;
+            this.labelCount4.Text = "0";
             // 
-            // label10
+            // labelCount5
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(78, 258);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(20, 22);
-            this.label10.TabIndex = 29;
-            this.label10.Text = "0";
+            this.labelCount5.AutoSize = true;
+            this.labelCount5.BackColor = System.Drawing.Color.Transparent;
+            this.labelCount5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCount5.Location = new System.Drawing.Point(71, 191);
+            this.labelCount5.Name = "labelCount5";
+            this.labelCount5.Size = new System.Drawing.Size(32, 36);
+            this.labelCount5.TabIndex = 29;
+            this.labelCount5.Text = "0";
             // 
             // label11
             // 
@@ -213,7 +218,7 @@
             // borderedPictureBoxThinking
             // 
             this.borderedPictureBoxThinking.BorderColor = System.Drawing.Color.White;
-            this.borderedPictureBoxThinking.BorderWidth = 10F;
+            this.borderedPictureBoxThinking.BorderWidth = 7F;
             this.borderedPictureBoxThinking.DrawBorder = true;
             this.borderedPictureBoxThinking.Location = new System.Drawing.Point(26, 75);
             this.borderedPictureBoxThinking.Margin = new System.Windows.Forms.Padding(2);
@@ -227,7 +232,7 @@
             // borderedPictureBoxEating
             // 
             this.borderedPictureBoxEating.BorderColor = System.Drawing.Color.White;
-            this.borderedPictureBoxEating.BorderWidth = 10F;
+            this.borderedPictureBoxEating.BorderWidth = 7F;
             this.borderedPictureBoxEating.DrawBorder = true;
             this.borderedPictureBoxEating.Location = new System.Drawing.Point(26, 45);
             this.borderedPictureBoxEating.Margin = new System.Windows.Forms.Padding(2);
@@ -241,7 +246,7 @@
             // borderedPictureBoxWaiting
             // 
             this.borderedPictureBoxWaiting.BorderColor = System.Drawing.Color.White;
-            this.borderedPictureBoxWaiting.BorderWidth = 10F;
+            this.borderedPictureBoxWaiting.BorderWidth = 7F;
             this.borderedPictureBoxWaiting.DrawBorder = true;
             this.borderedPictureBoxWaiting.Location = new System.Drawing.Point(26, 12);
             this.borderedPictureBoxWaiting.Margin = new System.Windows.Forms.Padding(2);
@@ -332,7 +337,7 @@
             this.borderedPictureBoxPlate5.BorderColor = System.Drawing.Color.White;
             this.borderedPictureBoxPlate5.BorderWidth = 10F;
             this.borderedPictureBoxPlate5.DrawBorder = true;
-            this.borderedPictureBoxPlate5.Location = new System.Drawing.Point(27, 164);
+            this.borderedPictureBoxPlate5.Location = new System.Drawing.Point(38, 164);
             this.borderedPictureBoxPlate5.Margin = new System.Windows.Forms.Padding(2);
             this.borderedPictureBoxPlate5.Name = "borderedPictureBoxPlate5";
             this.borderedPictureBoxPlate5.Size = new System.Drawing.Size(98, 91);
@@ -366,19 +371,6 @@
             this.borderedPictureBoxPlate3.TabIndex = 32;
             this.borderedPictureBoxPlate3.TabStop = false;
             // 
-            // borderedPictureBoxPlate2
-            // 
-            this.borderedPictureBoxPlate2.BorderColor = System.Drawing.Color.White;
-            this.borderedPictureBoxPlate2.BorderWidth = 10F;
-            this.borderedPictureBoxPlate2.DrawBorder = true;
-            this.borderedPictureBoxPlate2.Location = new System.Drawing.Point(390, 164);
-            this.borderedPictureBoxPlate2.Margin = new System.Windows.Forms.Padding(2);
-            this.borderedPictureBoxPlate2.Name = "borderedPictureBoxPlate2";
-            this.borderedPictureBoxPlate2.Size = new System.Drawing.Size(98, 91);
-            this.borderedPictureBoxPlate2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.borderedPictureBoxPlate2.TabIndex = 31;
-            this.borderedPictureBoxPlate2.TabStop = false;
-            // 
             // borderedPictureBoxPlate1
             // 
             this.borderedPictureBoxPlate1.BorderColor = System.Drawing.Color.White;
@@ -392,11 +384,24 @@
             this.borderedPictureBoxPlate1.TabIndex = 30;
             this.borderedPictureBoxPlate1.TabStop = false;
             // 
+            // borderedPictureBoxPlate2
+            // 
+            this.borderedPictureBoxPlate2.BorderColor = System.Drawing.Color.White;
+            this.borderedPictureBoxPlate2.BorderWidth = 10F;
+            this.borderedPictureBoxPlate2.DrawBorder = true;
+            this.borderedPictureBoxPlate2.Location = new System.Drawing.Point(383, 164);
+            this.borderedPictureBoxPlate2.Margin = new System.Windows.Forms.Padding(2);
+            this.borderedPictureBoxPlate2.Name = "borderedPictureBoxPlate2";
+            this.borderedPictureBoxPlate2.Size = new System.Drawing.Size(98, 91);
+            this.borderedPictureBoxPlate2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.borderedPictureBoxPlate2.TabIndex = 31;
+            this.borderedPictureBoxPlate2.TabStop = false;
+            // 
             // DiningPhilosophersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 503);
+            this.ClientSize = new System.Drawing.Size(495, 457);
             this.Controls.Add(this.borderedPictureBoFood1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -409,21 +414,21 @@
             this.Controls.Add(this.borderedPictureBoxFork3);
             this.Controls.Add(this.borderedPictureBoxFork2);
             this.Controls.Add(this.borderedPictureBoxFork1);
-            this.Controls.Add(this.borderedPictureBoxPlate5);
-            this.Controls.Add(this.borderedPictureBoxPlate4);
-            this.Controls.Add(this.borderedPictureBoxPlate3);
-            this.Controls.Add(this.borderedPictureBoxPlate2);
-            this.Controls.Add(this.borderedPictureBoxPlate1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelCount5);
+            this.Controls.Add(this.labelCount4);
+            this.Controls.Add(this.labelCount3);
+            this.Controls.Add(this.labelCount1);
             this.Controls.Add(this.Philosopher5);
             this.Controls.Add(this.Philosopher4);
             this.Controls.Add(this.Philosopher3);
             this.Controls.Add(this.Philosopher2);
             this.Controls.Add(this.Philosopher1);
+            this.Controls.Add(this.borderedPictureBoxPlate5);
+            this.Controls.Add(this.borderedPictureBoxPlate4);
+            this.Controls.Add(this.borderedPictureBoxPlate3);
+            this.Controls.Add(this.borderedPictureBoxPlate1);
+            this.Controls.Add(this.labelCount2);
+            this.Controls.Add(this.borderedPictureBoxPlate2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "DiningPhilosophersForm";
@@ -441,8 +446,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.borderedPictureBoxPlate2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,11 +460,11 @@
         private System.Windows.Forms.Label Philosopher3;
         private System.Windows.Forms.Label Philosopher4;
         private System.Windows.Forms.Label Philosopher5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelCount1;
+        private System.Windows.Forms.Label labelCount2;
+        private System.Windows.Forms.Label labelCount3;
+        private System.Windows.Forms.Label labelCount4;
+        private System.Windows.Forms.Label labelCount5;
         private BorderedPictureBox borderedPictureBoxPlate1;
         private BorderedPictureBox borderedPictureBoxPlate2;
         private BorderedPictureBox borderedPictureBoxPlate3;
