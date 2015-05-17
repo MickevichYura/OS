@@ -11,61 +11,68 @@ namespace lab4
         public DiningPhilosophersForm()
         {
             InitializeComponent();
-            _forks = new List<Label>(6);
-            _philosophers = new List<Label>(6);
+            borderedPictureBoxWaiting.BackColor = ColorWaiting;
+            borderedPictureBoxEating.BackColor = ColorEating;
+            borderedPictureBoxThinking.BackColor = ColorThinking;
+
+            _forks = new List<BorderedPictureBox>(6);
+            _philosophers = new List<BorderedPictureBox>(6);
             for (int i = 0; i < 7; i++)
             {
                 _forks.Add(null);
                 _philosophers.Add(null);
             }
-            _forks[1] = Fork1;
-            _forks[2] = Fork2;
-            _forks[3] = Fork3;
-            _forks[4] = Fork4;
-            _forks[5] = Fork5;
+            _forks[1] = borderedPictureBoxFork1;
+            _forks[2] = borderedPictureBoxFork2;
+            _forks[3] = borderedPictureBoxFork3;
+            _forks[4] = borderedPictureBoxFork4;
+            _forks[5] = borderedPictureBoxFork5;
 
-            _philosophers[1] = Philosopher1;
-            _philosophers[2] = Philosopher2;
-            _philosophers[3] = Philosopher3;
-            _philosophers[4] = Philosopher4;
-            _philosophers[5] = Philosopher5;
+            _philosophers[1] = borderedPictureBoxPlate1;
+            _philosophers[2] = borderedPictureBoxPlate2;
+            _philosophers[3] = borderedPictureBoxPlate3;
+            _philosophers[4] = borderedPictureBoxPlate4;
+            _philosophers[5] = borderedPictureBoxPlate5;
             for (var i = 0; i < 5; i++)
-                fork.Add(new Fork());
+                Forks.Add(new Fork());
             for (var i = 0; i < 5; i++)
-                ph.Add(new Philosopher((i + 1).ToString(), i));
+                Philosophers.Add(new Philosopher((i + 1).ToString(), i));
 
-            threads.Add(new Thread(ph[0].Start));
-            threads.Add(new Thread(ph[1].Start));
-            threads.Add(new Thread(ph[2].Start));
-            threads.Add(new Thread(ph[3].Start));
-            threads.Add(new Thread(ph[4].Start));
-            threads[0].Start(fork);
-            threads[1].Start(fork);
-            threads[2].Start(fork);
-            threads[3].Start(fork);
-            threads[4].Start(fork);
-            CallBackMy.CallbackEatEventHandler = PhelosopherEating;
-            CallBackMy.CallbackThinkEventHandler = PhelosopherThinking;
-            CallBackMy.CallbackWeitingEventHandler = PhelosopherWaiting;
+            _threads.Add(new Thread(Philosophers[0].Start));
+            _threads.Add(new Thread(Philosophers[1].Start));
+            _threads.Add(new Thread(Philosophers[2].Start));
+            _threads.Add(new Thread(Philosophers[3].Start));
+            _threads.Add(new Thread(Philosophers[4].Start));
+            _threads[0].Start(Forks);
+            _threads[1].Start(Forks);
+            _threads[2].Start(Forks);
+            _threads[3].Start(Forks);
+            _threads[4].Start(Forks);
+            CallBackMy.CallbackEatEventHandler = PhilosopherEating;
+            CallBackMy.CallbackThinkEventHandler = PhilosopherThinking;
+            CallBackMy.CallbackWaitingEventHandler = PhilosopherWaiting;
         }
 
-        private List<Label> _forks;
-        private List<Label> _philosophers;
-        static List<Fork> fork = new List<Fork>();
-        static List<Philosopher> ph = new List<Philosopher>();
-        List<Thread> threads = new List<Thread>();
+        private readonly List<BorderedPictureBox> _forks;
+        private readonly List<BorderedPictureBox> _philosophers;
+        static readonly List<Fork> Forks = new List<Fork>();
+        static readonly List<Philosopher> Philosophers = new List<Philosopher>();
+        readonly List<Thread> _threads = new List<Thread>();
 
-        public void PhelosopherEating(Data data)
+        private static readonly Color ColorEating = Color.Red;
+        private static readonly Color ColorWaiting = Color.DarkSeaGreen;
+        private static readonly Color ColorThinking = Color.SaddleBrown;
+
+        private void PhilosopherEating(Data data)
         {
 
             Action chTxt = () =>
             {
-                _philosophers[data.Philosopher].Text = "EATING";
-                _philosophers[data.Philosopher].BackColor = Color.DarkMagenta;
-                _forks[data.Fork1].Text = "Philosopher " + data.Philosopher;
-                _forks[data.Fork1].BackColor = Color.DarkMagenta;
-                _forks[data.Fork2].Text = "Philosopher " + data.Philosopher;
-                _forks[data.Fork2].BackColor = Color.DarkMagenta;
+                _philosophers[data.Philosopher].BackColor = ColorEating;
+                _philosophers[data.Philosopher].BorderColor = ColorEating;
+                _forks[data.Fork1].BackColor = ColorEating;
+                _forks[data.Fork2].BackColor = ColorEating;
+     
             };
 
             if (InvokeRequired)
@@ -74,12 +81,12 @@ namespace lab4
 
         }
 
-        public void PhelosopherWaiting(Data data)
+        private void PhilosopherWaiting(Data data)
         {
             Action chTxt = () =>
             {
-                _philosophers[data.Philosopher].Text = "Waiting";
-                _philosophers[data.Philosopher].BackColor = Color.DarkOrange;
+                _philosophers[data.Philosopher].BackColor = ColorWaiting;
+                _philosophers[data.Philosopher].BorderColor = ColorWaiting;
             };
 
             if (InvokeRequired)
@@ -88,17 +95,15 @@ namespace lab4
             
         }
 
-        public void PhelosopherThinking(Data data)
+        private void PhilosopherThinking(Data data)
         {
 
             Action chTxt = () =>
             {
-                _philosophers[data.Philosopher].Text = "Thinking";
-                _philosophers[data.Philosopher].BackColor = Color.DarkGreen;
-                _forks[data.Fork1].Text = "Free";
-                _forks[data.Fork1].BackColor = Color.DarkGreen;
-                _forks[data.Fork2].Text = "Free";
-                _forks[data.Fork2].BackColor = Color.DarkGreen;
+                _philosophers[data.Philosopher].BackColor = ColorThinking;
+                _philosophers[data.Philosopher].BorderColor = ColorThinking;
+                _forks[data.Fork1].BackColor = ColorThinking;
+                _forks[data.Fork2].BackColor = ColorThinking;
                 ChangeCounters();
             };
 
@@ -110,18 +115,18 @@ namespace lab4
 
         private void ChangeCounters()
         {
-            label6.Text = ph[0].Count.ToString();
-            label7.Text = ph[1].Count.ToString();
-            label8.Text = ph[2].Count.ToString();
-            label9.Text = ph[3].Count.ToString();
-            label10.Text = ph[4].Count.ToString();
+            label6.Text = Philosophers[0].Count.ToString();
+            label7.Text = Philosophers[1].Count.ToString();
+            label8.Text = Philosophers[2].Count.ToString();
+            label9.Text = Philosophers[3].Count.ToString();
+            label10.Text = Philosophers[4].Count.ToString();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            foreach (var VARIABLE in threads)
+            foreach (var variable in _threads)
             {
-                VARIABLE.Abort();
+                variable.Abort();
             }
         }
     }

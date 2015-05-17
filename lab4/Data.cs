@@ -2,9 +2,9 @@
 {
     public class Data
     {
-        public int Philosopher;
-        public int Fork1;
-        public int Fork2;
+        public readonly int Philosopher;
+        public readonly int Fork1;
+        public readonly int Fork2;
 
         public Data(int ph, int f1, int f2)
         {

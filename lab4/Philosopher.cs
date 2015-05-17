@@ -12,6 +12,9 @@ namespace lab4
         readonly int _number;
         public int Count;
 
+        private const int TimeForThinking1 = 1000;
+        private const int TimeForThinking2 = 5000;
+
         public Philosopher(string name, int number)
         {
             _philosopherName = name;
@@ -20,9 +23,9 @@ namespace lab4
 
         void GetFork(IReadOnlyList<Fork> fork)
         {
-            var timer = new Timer {Interval = 10000};
+            var timer = new Timer { Interval = 10000 };
             var tmp = new Data(int.Parse(_philosopherName), 0, 0);
-            CallBackMy.CallbackWeitingEventHandler(tmp);
+            CallBackMy.CallbackWaitingEventHandler(tmp);
 
             timer.Start();
             if (!Monitor.TryEnter(fork))
@@ -31,10 +34,10 @@ namespace lab4
             }
             try
             {
-                var first = _number-1;
+                var first = _number - 1;
                 if (first == -1) first = 4;
-                
-                var second=_number;
+
+                var second = _number;
                 if (fork[first].IsUsing || fork[second].IsUsing) return;
                 timer.Stop();
                 timer.Dispose();
@@ -43,12 +46,12 @@ namespace lab4
                 Monitor.Enter(fork[first]);
                 Monitor.Enter(fork[second]);
                 Monitor.Exit(fork);
-                CallBackMy.CallbackEatEventHandler(new Data(int.Parse(_philosopherName), first+1,second+1));
+                CallBackMy.CallbackEatEventHandler(new Data(int.Parse(_philosopherName), first + 1, second + 1));
 
                 Thread.Sleep(2500);
                 fork[first].IsUsing = false;
                 fork[second].IsUsing = false;
-                CallBackMy.CallbackThinkEventHandler(new Data(_number+1,first+1,second+1));
+                CallBackMy.CallbackThinkEventHandler(new Data(_number + 1, first + 1, second + 1));
                 _isHunger = false;
                 Monitor.Exit(fork[first]);
                 Monitor.Exit(fork[second]);
@@ -56,10 +59,10 @@ namespace lab4
             }
             finally
             {
-                if(Monitor.IsEntered(fork))
-                Monitor.Exit(fork);
+                if (Monitor.IsEntered(fork))
+                    Monitor.Exit(fork);
             }
-            
+
         }
 
         public void Start(object obj)
@@ -71,14 +74,14 @@ namespace lab4
                 if (!_isHunger)
                 {
                     var random = new Random(DateTime.Now.Millisecond);
-                    Thread.Sleep(random.Next(1000, 5000));
+                    Thread.Sleep(random.Next(TimeForThinking1, TimeForThinking2));
                 }
                 else
                 {
                     Thread.Sleep(50);
                 }
 
-                if(!_isHunger) _isHunger = true;
+                if (!_isHunger) _isHunger = true;
             }
         }
     }
@@ -89,6 +92,6 @@ namespace lab4
         public delegate void CallbackThinkEvent(Data data);
         public static CallbackThinkEvent CallbackThinkEventHandler;
         public delegate void CallbackWeitingEvent(Data data);
-        public static CallbackWeitingEvent CallbackWeitingEventHandler;
+        public static CallbackWeitingEvent CallbackWaitingEventHandler;
     }
 }

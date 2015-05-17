@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BorderedPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="DiningPhilosophersForm.cs">
       <SubType>Form</SubType>
@@ -81,11 +84,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\pic1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pic2.png" />
+    <None Include="Resources\food.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
