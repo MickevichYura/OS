@@ -30,12 +30,15 @@ namespace lab5
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbAmountOfProcesses1 = new System.Windows.Forms.ComboBox();
             this.cbPriotities = new System.Windows.Forms.ComboBox();
             this.cbQuantum1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelPriorities1 = new System.Windows.Forms.Label();
+            this.labelQuantum1 = new System.Windows.Forms.Label();
+            this.labelProcesses1 = new System.Windows.Forms.Label();
             this.buttonAdd1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +50,8 @@ namespace lab5
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labelQuantum2 = new System.Windows.Forms.Label();
+            this.labelProcesses2 = new System.Windows.Forms.Label();
             this.buttonAdd2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,13 +69,7 @@ namespace lab5
             this.ColumnFullTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Task1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProcPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Priority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelProcesses1 = new System.Windows.Forms.Label();
-            this.labelProcesses2 = new System.Windows.Forms.Label();
-            this.labelQuantum2 = new System.Windows.Forms.Label();
-            this.labelQuantum1 = new System.Windows.Forms.Label();
-            this.labelPriorities1 = new System.Windows.Forms.Label();
+            this.ProcessPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -130,8 +129,7 @@ namespace lab5
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Task1,
             this.Time1,
-            this.ProcPriority,
-            this.Priority});
+            this.ProcessPriority});
             this.dataGridView1.Location = new System.Drawing.Point(96, 7);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -159,6 +157,36 @@ namespace lab5
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(487, 381);
             this.panel1.TabIndex = 4;
+            // 
+            // labelPriorities1
+            // 
+            this.labelPriorities1.AutoSize = true;
+            this.labelPriorities1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPriorities1.Location = new System.Drawing.Point(16, 58);
+            this.labelPriorities1.Name = "labelPriorities1";
+            this.labelPriorities1.Size = new System.Drawing.Size(63, 17);
+            this.labelPriorities1.TabIndex = 24;
+            this.labelPriorities1.Text = "Priorities";
+            // 
+            // labelQuantum1
+            // 
+            this.labelQuantum1.AutoSize = true;
+            this.labelQuantum1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelQuantum1.Location = new System.Drawing.Point(16, 104);
+            this.labelQuantum1.Name = "labelQuantum1";
+            this.labelQuantum1.Size = new System.Drawing.Size(66, 17);
+            this.labelQuantum1.TabIndex = 23;
+            this.labelQuantum1.Text = "Quantum";
+            // 
+            // labelProcesses1
+            // 
+            this.labelProcesses1.AutoSize = true;
+            this.labelProcesses1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelProcesses1.Location = new System.Drawing.Point(16, 12);
+            this.labelProcesses1.Name = "labelProcesses1";
+            this.labelProcesses1.Size = new System.Drawing.Size(74, 17);
+            this.labelProcesses1.TabIndex = 20;
+            this.labelProcesses1.Text = "Processes";
             // 
             // buttonAdd1
             // 
@@ -277,6 +305,26 @@ namespace lab5
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(482, 381);
             this.panel2.TabIndex = 12;
+            // 
+            // labelQuantum2
+            // 
+            this.labelQuantum2.AutoSize = true;
+            this.labelQuantum2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelQuantum2.Location = new System.Drawing.Point(402, 59);
+            this.labelQuantum2.Name = "labelQuantum2";
+            this.labelQuantum2.Size = new System.Drawing.Size(66, 17);
+            this.labelQuantum2.TabIndex = 22;
+            this.labelQuantum2.Text = "Quantum";
+            // 
+            // labelProcesses2
+            // 
+            this.labelProcesses2.AutoSize = true;
+            this.labelProcesses2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelProcesses2.Location = new System.Drawing.Point(401, 12);
+            this.labelProcesses2.Name = "labelProcesses2";
+            this.labelProcesses2.Size = new System.Drawing.Size(74, 17);
+            this.labelProcesses2.TabIndex = 21;
+            this.labelProcesses2.Text = "Processes";
             // 
             // buttonAdd2
             // 
@@ -416,8 +464,8 @@ namespace lab5
             // 
             // PromiseTimeColumn
             // 
-            dataGridViewCellStyle1.NullValue = null;
-            this.PromiseTimeColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.NullValue = null;
+            this.PromiseTimeColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.PromiseTimeColumn.HeaderText = "PromiseTime";
             this.PromiseTimeColumn.Name = "PromiseTimeColumn";
             // 
@@ -439,67 +487,11 @@ namespace lab5
             this.Time1.Name = "Time1";
             this.Time1.Width = 70;
             // 
-            // ProcPriority
+            // ProcessPriority
             // 
-            this.ProcPriority.HeaderText = "Process Priority";
-            this.ProcPriority.Name = "ProcPriority";
-            this.ProcPriority.Width = 120;
-            // 
-            // Priority
-            // 
-            this.Priority.HeaderText = "Priority";
-            this.Priority.Name = "Priority";
-            this.Priority.Visible = false;
-            // 
-            // labelProcesses1
-            // 
-            this.labelProcesses1.AutoSize = true;
-            this.labelProcesses1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelProcesses1.Location = new System.Drawing.Point(16, 12);
-            this.labelProcesses1.Name = "labelProcesses1";
-            this.labelProcesses1.Size = new System.Drawing.Size(74, 17);
-            this.labelProcesses1.TabIndex = 20;
-            this.labelProcesses1.Text = "Processes";
-            // 
-            // labelProcesses2
-            // 
-            this.labelProcesses2.AutoSize = true;
-            this.labelProcesses2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelProcesses2.Location = new System.Drawing.Point(401, 12);
-            this.labelProcesses2.Name = "labelProcesses2";
-            this.labelProcesses2.Size = new System.Drawing.Size(74, 17);
-            this.labelProcesses2.TabIndex = 21;
-            this.labelProcesses2.Text = "Processes";
-            // 
-            // labelQuantum2
-            // 
-            this.labelQuantum2.AutoSize = true;
-            this.labelQuantum2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelQuantum2.Location = new System.Drawing.Point(402, 59);
-            this.labelQuantum2.Name = "labelQuantum2";
-            this.labelQuantum2.Size = new System.Drawing.Size(66, 17);
-            this.labelQuantum2.TabIndex = 22;
-            this.labelQuantum2.Text = "Quantum";
-            // 
-            // labelQuantum1
-            // 
-            this.labelQuantum1.AutoSize = true;
-            this.labelQuantum1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelQuantum1.Location = new System.Drawing.Point(16, 104);
-            this.labelQuantum1.Name = "labelQuantum1";
-            this.labelQuantum1.Size = new System.Drawing.Size(66, 17);
-            this.labelQuantum1.TabIndex = 23;
-            this.labelQuantum1.Text = "Quantum";
-            // 
-            // labelPriorities1
-            // 
-            this.labelPriorities1.AutoSize = true;
-            this.labelPriorities1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPriorities1.Location = new System.Drawing.Point(16, 58);
-            this.labelPriorities1.Name = "labelPriorities1";
-            this.labelPriorities1.Size = new System.Drawing.Size(63, 17);
-            this.labelPriorities1.TabIndex = 24;
-            this.labelPriorities1.Text = "Priorities";
+            this.ProcessPriority.HeaderText = "Process Priority";
+            this.ProcessPriority.Name = "ProcessPriority";
+            this.ProcessPriority.Width = 120;
             // 
             // SchedulingForm
             // 
@@ -558,15 +550,14 @@ namespace lab5
         private System.Windows.Forms.DataGridViewTextBoxColumn LeftTimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PromiseTimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFullTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Task1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Time1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProcPriority;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Priority;
         private System.Windows.Forms.Label labelPriorities1;
         private System.Windows.Forms.Label labelQuantum1;
         private System.Windows.Forms.Label labelProcesses1;
         private System.Windows.Forms.Label labelQuantum2;
         private System.Windows.Forms.Label labelProcesses2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Task1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Time1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProcessPriority;
 
     }
 }

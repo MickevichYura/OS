@@ -18,8 +18,11 @@ namespace lab5
             cbQuantum2.DataSource = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         }
 
+        private const int SleepTime = 1000;
 
         private readonly List<double> _times = new List<double>();
+
+        private int totalWorkingTime;
 
         private int _amount1, _amount2;
         private int _quantum1;
@@ -64,10 +67,10 @@ namespace lab5
                     int.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString()));
 
                 dataGridView1.Rows[i].Cells[2].Value = int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString());
-                dataGridView1.Rows[i].Cells[3].Value = int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString());
+                //dataGridView1.Rows[i].Cells[3].Value = int.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString());
             }
             timer1.Enabled = true;
-            dataGridView1.Sort(Priority, ListSortDirection.Descending);
+            dataGridView1.Sort(ProcessPriority, ListSortDirection.Descending);
         }
 
 
@@ -90,7 +93,7 @@ namespace lab5
         {
             timer1.Enabled = false;
 
-            Thread.Sleep(100);
+            Thread.Sleep(SleepTime);
             progressBar1.Minimum = 0;
             try
             {
@@ -110,14 +113,28 @@ namespace lab5
             }
 
             dataGridView1.Rows[0].Cells[1].Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) - _quantum1;
-            if (int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString()) > 0)
-                dataGridView1.Rows[0].Cells[2].Value = int.Parse(dataGridView1.Rows[0].Cells[2].Value.ToString()) - 1;
-            dataGridView1.Rows[0].Cells[3].Value = int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString()) - 1;
+
+            if (dataGridView1.RowCount > 1)
+            {
+                int i = 0;
+                while (i < dataGridView1.RowCount - 1 && (int.Parse(dataGridView1.Rows[i].Cells[2].Value.ToString()) ==
+                    int.Parse(dataGridView1.Rows[i + 1].Cells[2].Value.ToString())))
+                {
+                    for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                    {
+                        object swap0 = dataGridView1.Rows[i].Cells[j].Value;
+                        object swap1 = dataGridView1.Rows[i + 1].Cells[j].Value;
+                        dataGridView1.Rows[i].Cells[j].Value = swap1;
+                        dataGridView1.Rows[i + 1].Cells[j].Value = swap0;
+                    }
+                    i++;
+                }
+            }
+
             label1.Text = progressBar1.Value.ToString();
             label2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             timer1.Enabled = true;
             Check();
-            dataGridView1.Sort(Priority, ListSortDirection.Descending);
         }
 
         private void Check()
@@ -148,6 +165,7 @@ namespace lab5
 
         private void buttonStart2_Click(object sender, EventArgs e)
         {
+            totalWorkingTime = 0;
             _copy2.Clear();
             for (int i = 0; i < dataGridView2.Rows.Count; i++)
             {
@@ -179,7 +197,7 @@ namespace lab5
             for (int i = 0; i < amount; i++)
             {
                 int processTime = GetRandomNumber(_quantum2, _quantum2 * 30);
-                dataGridView2.Rows.Add("Task " + (i + _amount2), processTime.ToString(), 0, 0, processTime.ToString());
+                dataGridView2.Rows.Add("Task " + (i + _amount2), processTime.ToString(), totalWorkingTime, 0, processTime.ToString());
             }
             _amount2 += amount;
         }
@@ -194,7 +212,7 @@ namespace lab5
             _times.Clear();
             timer2.Enabled = false;
 
-            Thread.Sleep(100);
+            Thread.Sleep(SleepTime);
             progressBar2.Minimum = 0;
             try
             {
@@ -214,6 +232,7 @@ namespace lab5
             }
 
             dataGridView2.Rows[0].Cells[1].Value = int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString()) - _quantum2;
+            totalWorkingTime += _quantum2;
 
             dataGridView2.Rows[0].Cells[3].Value =
                 (double.Parse(dataGridView2.Rows[0].Cells[3].Value.ToString()));
@@ -232,9 +251,10 @@ namespace lab5
 
                 dataGridView2.Rows[i].Cells[2].Value = (int)(dataGridView2.Rows[i].Cells[2].Value) +
                                                        _quantum2;
-                double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["LeftTimeColumn"].Value.ToString());
+                double d = (processWorkingTime / (double)totalWorkingTime);
+                //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["LeftTimeColumn"].Value.ToString());
                 //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["ColumnFullTime"].Value.ToString());
-                dataGridView2.Rows[i].Cells[3].Value = d;
+                dataGridView2.Rows[i].Cells[3].Value = String.Format("{0:0.000}", d);
 
                 _times.Add(double.Parse(dataGridView2.Rows[i].Cells[3].Value.ToString()));
                 if (minValue > _times[i])
@@ -252,6 +272,23 @@ namespace lab5
                     object swap1 = dataGridView2.Rows[minValueIndex].Cells[i].Value;
                     dataGridView2.Rows[0].Cells[i].Value = swap1;
                     dataGridView2.Rows[minValueIndex].Cells[i].Value = swap0;
+                }
+            }
+
+            if (dataGridView1.RowCount > 1)
+            {
+                int i = 0;
+                while (i < dataGridView2.RowCount - 1 && (int.Parse(dataGridView2.Rows[i].Cells[3].Value.ToString()) ==
+                    int.Parse(dataGridView2.Rows[i + 1].Cells[3].Value.ToString())))
+                {
+                    for (int j = 0; j < dataGridView2.ColumnCount; j++)
+                    {
+                        object swap0 = dataGridView2.Rows[i].Cells[j].Value;
+                        object swap1 = dataGridView2.Rows[i + 1].Cells[j].Value;
+                        dataGridView2.Rows[i].Cells[j].Value = swap1;
+                        dataGridView2.Rows[i + 1].Cells[j].Value = swap0;
+                    }
+                    i++;
                 }
             }
 
