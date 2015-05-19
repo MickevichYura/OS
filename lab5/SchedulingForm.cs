@@ -88,12 +88,6 @@ namespace lab5
             timer1.Enabled = false;
 
             Thread.Sleep(SleepTime);
-
-            progressBar1.Minimum = 0;
-            progressBar1.Maximum = int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString());
-            progressBar1.Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) + 1;
-            progressBar1.Caption = string.Format("{0} - {1}%", dataGridView1.Rows[0].Cells[0].Value, progressBar1.Value * 100 / progressBar1.Maximum);
-
             dataGridView1.Rows[0].Cells[1].Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString()) + _quantum1;
 
             if (dataGridView1.RowCount > 1)
@@ -112,6 +106,10 @@ namespace lab5
                     i++;
                 }
             }
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString());
+            progressBar1.Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString());
+            progressBar1.Caption = string.Format("{0} - {1}%", dataGridView1.Rows[0].Cells[0].Value, progressBar1.Value * 100 / progressBar1.Maximum);
             timer1.Enabled = true;
             Check();
         }
@@ -122,7 +120,6 @@ namespace lab5
             {
                 dataGridView1.Rows.RemoveAt(0);
                 _amount1--;
-                progressBar1.Value = 0;
             }
             if (_amount1 == 0)
             {
@@ -184,17 +181,16 @@ namespace lab5
             timer2.Enabled = false;
 
             Thread.Sleep(SleepTime);
-            progressBar2.Minimum = 0;
-            progressBar2.Maximum = int.Parse(dataGridView2.Rows[0].Cells["FullTimeColumn2"].Value.ToString());
-            progressBar2.Value = int.Parse(dataGridView2.Rows[0].Cells["TimeColumn2"].Value.ToString()) + 1;
-            progressBar2.Caption = string.Format("{0} - {1}", dataGridView2.Rows[0].Cells["TaskColumn2"].Value, progressBar2.Value);
-
-            dataGridView2.Rows[0].Cells[1].Value = int.Parse(dataGridView2.Rows[0].Cells[1].Value.ToString()) + _quantum2;
+            dataGridView2.Rows[0].Cells["TimeColumn2"].Value = int.Parse(dataGridView2.Rows[0].Cells["TimeColumn2"].Value.ToString()) + _quantum2;
             _totalWorkingTime += _quantum2;
 
             dataGridView2.Rows[0].Cells["PromiseTimeColumn2"].Value =
                 (double.Parse(dataGridView2.Rows[0].Cells["PromiseTimeColumn2"].Value.ToString()));
 
+            progressBar2.Minimum = 0;
+            progressBar2.Maximum = int.Parse(dataGridView2.Rows[0].Cells["FullTimeColumn2"].Value.ToString());
+            progressBar2.Value = int.Parse(dataGridView2.Rows[0].Cells["TimeColumn2"].Value.ToString());
+            progressBar2.Caption = string.Format("{0} - {1}%", dataGridView2.Rows[0].Cells["TaskColumn2"].Value, progressBar2.Value * 100 / progressBar2.Maximum);
             timer2.Enabled = true;
             Check2();
 
@@ -244,7 +240,6 @@ namespace lab5
                     i++;
                 }
             }
-
         }
 
         private void Check2()
@@ -253,7 +248,6 @@ namespace lab5
             {
                 dataGridView2.Rows.RemoveAt(0);
                 _amount2--;
-                progressBar2.Value = 0;
             }
             if (_amount2 == 0)
             {
@@ -264,7 +258,6 @@ namespace lab5
                 buttonStart2.Enabled = false;
                 buttonStop2.Enabled = true;
             }
-
         }
     }
 }
