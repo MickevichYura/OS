@@ -13,3 +13,8 @@
 
 + [lab 6 - Memory Management](https://github.com/MickevichYura/OS/tree/master/lab6)
   1. Swapping
+  2. Linked Lists
+
++ [lab 7 - Page Replacement](https://github.com/MickevichYura/OS/tree/master/lab7)
+  1. NRU (Not Recently Used)
+  2. The Second-Chance
