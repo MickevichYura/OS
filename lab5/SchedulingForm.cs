@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -17,6 +18,10 @@ namespace lab5
             cbQuantum1.DataSource = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             cbQuantum2.DataSource = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         }
+
+        private readonly static Color InProgressColor = Color.Gold;
+        private readonly static Color WasInProgressColor = Color.LemonChiffon;
+        private readonly static Color DefaultColor = Color.White;
 
         private const int SleepTime = 1000;
 
@@ -103,9 +108,14 @@ namespace lab5
                         dataGridView1.Rows[i].Cells[j].Value = swap1;
                         dataGridView1.Rows[i + 1].Cells[j].Value = swap0;
                     }
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = DefaultColor;
                     i++;
+
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = WasInProgressColor;
                 }
+                
             }
+            dataGridView1.Rows[0].DefaultCellStyle.BackColor = InProgressColor;
             progressBar1.Minimum = 0;
             progressBar1.Maximum = int.Parse(dataGridView1.Rows[0].Cells[3].Value.ToString());
             progressBar1.Value = int.Parse(dataGridView1.Rows[0].Cells[1].Value.ToString());
@@ -203,7 +213,7 @@ namespace lab5
                 double d = (processWorkingTime / (double)(_totalWorkingTime * _amount2));
                 //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["LeftTimeColumn"].Value.ToString());
                 //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["ColumnFullTime"].Value.ToString());
-                dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value = String.Format("{0:0.000}", d);
+                dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value = string.Format("{0:0.000}", d);
 
                 _times.Add(double.Parse(dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value.ToString()));
                 if (minValue > _times[i])
@@ -224,22 +234,22 @@ namespace lab5
                 }
             }
 
-            if (dataGridView1.RowCount > 1)
-            {
-                int i = 0;
-                while (i < dataGridView2.RowCount - 1 && (int.Parse(dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value.ToString()) ==
-                    int.Parse(dataGridView2.Rows[i + 1].Cells["PromiseTimeColumn2"].Value.ToString())))
-                {
-                    for (int j = 0; j < dataGridView2.ColumnCount; j++)
-                    {
-                        object swap0 = dataGridView2.Rows[i].Cells[j].Value;
-                        object swap1 = dataGridView2.Rows[i + 1].Cells[j].Value;
-                        dataGridView2.Rows[i].Cells[j].Value = swap1;
-                        dataGridView2.Rows[i + 1].Cells[j].Value = swap0;
-                    }
-                    i++;
-                }
-            }
+            //if (dataGridView1.RowCount > 1)
+            //{
+            //    int i = 0;
+            //    while (i < dataGridView2.RowCount && (int.Parse(dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value.ToString()) ==
+            //        int.Parse(dataGridView2.Rows[i + 1].Cells["PromiseTimeColumn2"].Value.ToString())))
+            //    {
+            //        for (int j = 0; j < dataGridView2.ColumnCount; j++)
+            //        {
+            //            object swap0 = dataGridView2.Rows[i].Cells[j].Value;
+            //            object swap1 = dataGridView2.Rows[i + 1].Cells[j].Value;
+            //            dataGridView2.Rows[i].Cells[j].Value = swap1;
+            //            dataGridView2.Rows[i + 1].Cells[j].Value = swap0;
+            //        }
+            //        i++;
+            //    }
+            //}
         }
 
         private void Check2()
