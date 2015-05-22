@@ -211,8 +211,6 @@ namespace lab5
                 int processWorkingTime = int.Parse(dataGridView2.Rows[i].Cells[1].Value.ToString());
 
                 double d = (processWorkingTime / (double)(_totalWorkingTime * _amount2));
-                //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["LeftTimeColumn"].Value.ToString());
-                //double d = processWorkingTime / double.Parse(dataGridView2.Rows[i].Cells["ColumnFullTime"].Value.ToString());
                 dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value = string.Format("{0:0.000}", d);
 
                 _times.Add(double.Parse(dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value.ToString()));
@@ -220,6 +218,10 @@ namespace lab5
                 {
                     minValue = _times[i];
                     minValueIndex = i;
+                }
+                if (i != 0)
+                {
+                    dataGridView2.Rows[i].DefaultCellStyle.BackColor = DefaultColor;
                 }
             }
 
@@ -232,24 +234,9 @@ namespace lab5
                     dataGridView2.Rows[0].Cells[i].Value = swap1;
                     dataGridView2.Rows[minValueIndex].Cells[i].Value = swap0;
                 }
+                dataGridView2.Rows[minValueIndex].DefaultCellStyle.BackColor = WasInProgressColor;
             }
-
-            //if (dataGridView1.RowCount > 1)
-            //{
-            //    int i = 0;
-            //    while (i < dataGridView2.RowCount && (int.Parse(dataGridView2.Rows[i].Cells["PromiseTimeColumn2"].Value.ToString()) ==
-            //        int.Parse(dataGridView2.Rows[i + 1].Cells["PromiseTimeColumn2"].Value.ToString())))
-            //    {
-            //        for (int j = 0; j < dataGridView2.ColumnCount; j++)
-            //        {
-            //            object swap0 = dataGridView2.Rows[i].Cells[j].Value;
-            //            object swap1 = dataGridView2.Rows[i + 1].Cells[j].Value;
-            //            dataGridView2.Rows[i].Cells[j].Value = swap1;
-            //            dataGridView2.Rows[i + 1].Cells[j].Value = swap0;
-            //        }
-            //        i++;
-            //    }
-            //}
+            dataGridView2.Rows[0].DefaultCellStyle.BackColor = InProgressColor;
         }
 
         private void Check2()
