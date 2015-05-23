@@ -20,7 +20,7 @@ namespace lab5
         }
 
         private readonly static Color InProgressColor = Color.Gold;
-        private readonly static Color WasInProgressColor = Color.LemonChiffon;
+        private readonly static Color WasInProgressColor = Color.FromArgb(245, 252, 78);
         private readonly static Color DefaultColor = Color.White;
 
         private const int SleepTime = 1000;
@@ -193,6 +193,7 @@ namespace lab5
             Thread.Sleep(SleepTime);
             dataGridView2.Rows[0].Cells["TimeColumn2"].Value = int.Parse(dataGridView2.Rows[0].Cells["TimeColumn2"].Value.ToString()) + _quantum2;
             _totalWorkingTime += _quantum2;
+            labelTotalWorkingTime.Text = _totalWorkingTime.ToString();
 
             dataGridView2.Rows[0].Cells["PromiseTimeColumn2"].Value =
                 (double.Parse(dataGridView2.Rows[0].Cells["PromiseTimeColumn2"].Value.ToString()));
@@ -235,8 +236,8 @@ namespace lab5
                     dataGridView2.Rows[minValueIndex].Cells[i].Value = swap0;
                 }
                 dataGridView2.Rows[minValueIndex].DefaultCellStyle.BackColor = WasInProgressColor;
+                dataGridView2.Rows[0].DefaultCellStyle.BackColor = InProgressColor;
             }
-            dataGridView2.Rows[0].DefaultCellStyle.BackColor = InProgressColor;
         }
 
         private void Check2()
@@ -251,6 +252,8 @@ namespace lab5
                 timer2.Enabled = false;
                 progressBar2.Value = 0;
                 progressBar2.Caption = @"0";
+                _totalWorkingTime = 0;
+                labelTotalWorkingTime.Text = _totalWorkingTime.ToString();
                 dataGridView2.Columns[2].ReadOnly = false;
                 buttonStart2.Enabled = false;
                 buttonStop2.Enabled = true;
