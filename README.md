@@ -18,3 +18,5 @@
 + [lab 7 - Page Replacement](https://github.com/MickevichYura/OS/tree/master/lab7)
   1. NRU (Not Recently Used)
   2. The Second-Chance
+  
+  ###5 semester
