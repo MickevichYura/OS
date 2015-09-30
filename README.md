@@ -1,3 +1,4 @@
+  ###4 semester
 
 + [lab 1 - Processes and threads in operating systems](https://github.com/MickevichYura/OS/tree/master/lab1)
 
@@ -18,5 +19,9 @@
 + [lab 7 - Page Replacement](https://github.com/MickevichYura/OS/tree/master/lab7)
   1. NRU (Not Recently Used)
   2. The Second-Chance
-  
+
   ###5 semester
+
++ [lab 9 - Registry](https://github.com/MickevichYura/OS/tree/master/lab9)
+  1. Write to registry
+  2. Read from registry
