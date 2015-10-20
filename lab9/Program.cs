@@ -1,28 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 
 namespace lab9
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            RegistryKey[] registryKeys = new[] {Registry.CurrentUser};
+            RegistryKey[] registryKeys = { Registry.CurrentUser };
 
-            Data data = new Data(666, new string[] { "One", "Two", "Three" }, new byte[] { 4, 8, 15, 16, 23, 42 }, "The path is %JAVA_HOME%");
+            Data data = new Data(666, new[] {"One", "Two", "Three"}, new byte[] {4, 8, 15, 16, 23, 42},
+                "The java_home is %JAVA_HOME%");
             string subKey = "TestKey";
 
             foreach (var key in registryKeys)
             {
-                
-                //RegistryKey rk = WorkWithRegistry(key, subKey, data);
-                RegistryKey rk = key.CreateSubKey(subKey);
+                RegistryKey rk = WorkWithRegistry(key, subKey, data);
+                //RegistryKey rk = key.CreateSubKey(subKey);
                 DisplayRegistryKeys(key, subKey);
             }
+
+            Registry.SetValue(@"HKEY_CURRENT_USER\TestKey", "DWordValue", 6666);
+            Console.WriteLine(Registry.GetValue(@"HKEY_CURRENT_USER\TestKey", "DWordValue", null));
+
+
+            //Console.WriteLine();
+            ////Registry.PerformanceData.CreateSubKey("Test");
+            //foreach (var values in Registry.PerformanceData.GetValueNames())
+            //{
+            //    Console.WriteLine(values);
+            //}
 
             //DeleteSubKey(registryKeys[0], "TestKey");
 
@@ -34,10 +41,10 @@ namespace lab9
             registryKey.DeleteSubKey(subKey, false);
         }
 
-        static RegistryKey WorkWithRegistry(RegistryKey registryKey, String subKey, Data data)
+        private static RegistryKey WorkWithRegistry(RegistryKey registryKey, String subKey, Data data)
         {
-            
-            registryKey = Registry.CurrentUser.CreateSubKey(subKey);
+
+            registryKey = registryKey.CreateSubKey(subKey);
 
             //registryKey.DeleteSubKey(subKey, false);
             //registryKey = registryKey.CreateSubKey(subKey);
