@@ -1,6 +1,6 @@
 
 ###4 semester
- 
+
 + [lab 1 - Processes and threads in operating systems](https://github.com/MickevichYura/OS/tree/master/lab1)
 
 + [lab 2 - Mutual Exclusion](https://github.com/MickevichYura/OS/tree/master/lab2)
@@ -23,7 +23,12 @@
 
  ###5 semester
 
++ [lab 8 - Win API](https://github.com/MickevichYura/OS/tree/master/lab8)
+  1. [c#](https://github.com/MickevichYura/OS/tree/master/lab8)
+  2. [c++](https://github.com/MickevichYura/OS/tree/master/lab8++)
+
 + [lab 9 - Registry](https://github.com/MickevichYura/OS/tree/master/lab9)
   1. Write to registry
   2. Read from registry
-  
+
++ [lab 10 - Registry Modeling](https://github.com/MickevichYura/OS/tree/master/lab10)
